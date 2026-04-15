@@ -48,16 +48,16 @@ mamba install python pandas numpy pytorch pillow matplotlib -c pytorch -c conda-
 
 - [light_pv_id00002_201801.csv](data\processed\light_pv_id00002_201801.csv)
 
-推荐直接这样跑：
+推荐直接运行`.start.sh`脚本，或者也可以运行如下代码（sh脚本里的代码）：
 
 ```bash
 python experiments/pv_forecast.py \
   --data-path data/processed/light_pv_id00002_201801.csv \
   --time-col timestamp \
   --target-col power \
-  --resample-rule 15min \
+  --resample-rule 45min \
   --add-time-features \
-  --window-size 20 \
+  --window-size 12 \
   --horizon 2 \
   --epochs 40 \
   --batch-size 32 \
@@ -72,13 +72,13 @@ python experiments/pv_forecast.py \
 
 这组参数的含义是：
 
-- 先把 1 分钟数据重采样为 15 分钟数据。
-- 使用过去 `20` 个时间步，也就是过去 `5` 小时的数据。
-- 预测未来 `2` 个时间步，也就是未来 `30` 分钟的功率。
+- 先把 1 分钟数据重采样为 45 分钟数据。
+- 使用过去 `12` 个时间步，也就是过去 `1` 小时的数据。
+- 预测未来 `2` 个时间步，也就是未来 `90` 分钟的功率。
 - 自动加入昼夜周期和周内周期的时间特征。
 - 使用更大的隐藏层和更小的 batch size，让 LSTM 有更充足的拟合能力。
 
-这样做的原因是：对原始 1 分钟单变量数据而言，`Persistence` 基线会非常强，深度学习模型不容易体现优势；而在 `15min` 重采样后的 `30` 分钟 ahead 设置下，图形会比 `1` 小时 ahead 更平滑，也更适合课程报告展示。当前推荐参数是基于这份真实数据做过一轮简单调参后选出来的版本。
+这样做的原因是：对原始 1 分钟单变量数据而言，`Persistence` 基线会非常强，深度学习模型不容易体现优势；而在 `45min` 重采样后的 `90` 分钟 ahead 设置下，图形会比 `1` 小时 ahead 更平滑。当前推荐参数是基于这份真实数据做过一轮简单调参后选出来的版本。
 
 ## 参数说明
 
@@ -102,3 +102,6 @@ python experiments/pv_forecast.py \
 
 默认生成的 `prediction_curve.png` 会展示整段测试集的预测结果，并补充完整的时间轴标签，便于直接用于课程报告展示。
 
+## 放在最后
+
+这段代码是借助AI生成的，不过参数的选择、模型的选择都是我基于对数据的理解和一些简单的调试后选出来的。

@@ -852,13 +852,7 @@ def build_report_snippet(
             "本次实验中 LSTM 与基线模型差距有限，这通常与数据规模、输入特征数量、"
             "天气突变程度以及夜间样本处理方式有关。"
         )
-
-    lines.extend(
-        [
-            "建议将上表替换到报告的“表3”，并把同目录下的 `prediction_curve.png` 作为“图2”插入。",
-            "",
-        ]
-    )
+        
     return "\n".join(lines)
 
 

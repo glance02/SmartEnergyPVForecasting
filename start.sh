@@ -1,0 +1,13 @@
+python experiments/pv_forecast.py \
+  --data-path data/processed/light_pv_id00002_201801.csv \
+  --time-col timestamp \
+  --target-col power \
+  --resample-rule 45min \
+  --add-time-features \
+  --window-size 12 \
+  --horizon 2 \
+  --epochs 40 \
+  --batch-size 32 \
+  --hidden-size 128 \
+  --output-dir artifacts/pv_experiment_light \
+  --device cuda
