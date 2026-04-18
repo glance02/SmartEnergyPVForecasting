@@ -1,0 +1,34 @@
+﻿{
+  "dataset_label": "light_pv_id00002_201801.csv",
+  "data_path": "data/processed/light_pv_id00002_201801.csv",
+  "time_col": "timestamp",
+  "target_col": "power",
+  "extra_features": [],
+  "time_feature_cols": [
+    "time_of_day_sin",
+    "time_of_day_cos",
+    "day_of_week_sin",
+    "day_of_week_cos"
+  ],
+  "feature_cols": [
+    "power",
+    "time_of_day_sin",
+    "time_of_day_cos",
+    "day_of_week_sin",
+    "day_of_week_cos"
+  ],
+  "window_size": 12,
+  "horizon": 2,
+  "epochs": 40,
+  "batch_size": 32,
+  "hidden_size": 128,
+  "resample_rule": "45min",
+  "add_time_features": true,
+  "filter_night": false,
+  "demo_synthetic": false,
+  "seed": 42,
+  "device": "cpu",
+  "row_count_after_preprocessing": 494,
+  "input_feature_count": 5,
+  "config_summary": "resample=45min, time_features=on, night_filter=off, input_features=5"
+}

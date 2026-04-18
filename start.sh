@@ -1,4 +1,4 @@
-python experiments/pv_forecast.py \
+python experiments/main.py \
   --data-path data/processed/light_pv_id00002_201801.csv \
   --time-col timestamp \
   --target-col power \
@@ -11,3 +11,6 @@ python experiments/pv_forecast.py \
   --hidden-size 128 \
   --output-dir artifacts/pv_experiment_light \
   --device cuda
+
+python experiments/vis.py \
+  --output-dir artifacts/pv_experiment_light
